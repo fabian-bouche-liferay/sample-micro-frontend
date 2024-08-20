@@ -10,8 +10,8 @@ function DisplayData(props) {
         (async () => {
             try {
                 const token = auth.user?.access_token;
-                const url = "https://restapi-lctilink-prd.lfr.cloud/Account/ContactInfo";
-                //const url = "http://localhost:9090/Account/ContactInfo";
+                //const url = "https://restapi-lctilink-prd.lfr.cloud/Account/ContactInfo";
+                const url = "http://localhost:9090/Account/ContactInfo";
                 const response = await fetch(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
