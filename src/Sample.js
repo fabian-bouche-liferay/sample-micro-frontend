@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { AuthProvider } from "react-oidc-context";
+import React from 'react';
 import { useAuth, hasAuthParams  } from "react-oidc-context";
 import DisplayData from './DisplayData';
 

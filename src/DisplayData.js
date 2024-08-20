@@ -23,7 +23,7 @@ function DisplayData(props) {
                 console.error(e);
             }
         })()
-    }, [auth]);
+    }, [auth, foo]);
 
     if (foo == null) {
         return <div>Loading...</div>;
