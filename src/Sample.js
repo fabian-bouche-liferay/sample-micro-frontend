@@ -1,11 +1,12 @@
 import React from 'react';
-import { useAuth, hasAuthParams  } from "react-oidc-context";
+import { useAuth, hasAuthParams } from "react-oidc-context";
 import DisplayData from './DisplayData';
 
 function Sample(props) {
 
     const auth = useAuth();
     const [hasTriedSignin, setHasTriedSignin] = React.useState(false);
+    const [refreshKey, setRefreshKey] = React.useState(0); // State to trigger re-render
 
     // automatically sign-in
     React.useEffect(() => {
@@ -18,45 +19,31 @@ function Sample(props) {
         }
     }, [auth, hasTriedSignin]);
 
+    // Trigger a refresh 0.5 seconds after failing to log in
+    React.useEffect(() => {
+        if (!auth.isAuthenticated && !auth.isLoading && hasTriedSignin) {
+            const timer = setTimeout(() => {
+                setRefreshKey(prevKey => prevKey + 1);
+            }, 500);
+            return () => clearTimeout(timer); // Cleanup on unmount
+        }
+    }, [auth.isAuthenticated, auth.isLoading, hasTriedSignin]);
+
     if (auth.isLoading) {
         return <div>Signing you in/out...</div>;
     }
 
     if (!auth.isAuthenticated) {
-        document.location.href = document.location.href;
         return <div>Unable to log in</div>;
     }
-/*
-    switch (auth.activeNavigator) {
-        case "signinSilent":
-            return <div>Signing you in...</div>;
-        case "signoutRedirect":
-            return <div>Signing you out...</div>;
-    }
 
-    if (auth.isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (auth.error) {
-        return <div>Oops... {auth.error.message}</div>;
-    }
-*/
-/*
-            Hello {auth.user?.profile.sub}{" "}
-            <button onClick={() => void auth.removeUser()}>Log out</button>*/
     if (auth.isAuthenticated) {
         return (
-        <div>
+        <div key={refreshKey}>
             <DisplayData />
         </div>
         );
     }
-/*
-    return (
-        <button onClick={() => void auth.signinRedirect()}>Log in</button>
-    );*/
-
 }
 
 export default Sample;
