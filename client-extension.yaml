@@ -1,0 +1,11 @@
+assemble:
+    - from: build/static
+      into: static
+dl-table-custom-element-js:
+    url: js/main.*.js
+    type: globalJS
+    name: DL Table JS
+#dl-table-custom-element-css:
+#    url: css/main.*.css
+#    type: globalCSS
+#    name: DL Table CSS
