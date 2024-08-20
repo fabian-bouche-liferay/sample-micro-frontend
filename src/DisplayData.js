@@ -18,12 +18,11 @@ function DisplayData(props) {
                     },
                 });
                 setFoo(await response.json());
-                console.log("RESPONSE: " + JSON.stringify(foo));
             } catch (e) {
                 console.error(e);
             }
         })()
-    }, [auth, foo]);
+    }, [auth]);
 
     if (foo == null) {
         return <div>Loading...</div>;
