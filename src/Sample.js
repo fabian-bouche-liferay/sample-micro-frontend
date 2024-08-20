@@ -18,16 +18,6 @@ function Sample(props) {
         }
     }, [auth, hasTriedSignin]);
 
-    // Trigger a page reload 0.5 seconds after failing to log in
-    React.useEffect(() => {
-        if (!auth.isAuthenticated && !auth.isLoading && hasTriedSignin) {
-            const timer = setTimeout(() => {
-                window.location.reload(); // Force a full page reload
-            }, 500);
-            return () => clearTimeout(timer); // Cleanup on unmount
-        }
-    }, [auth.isAuthenticated, auth.isLoading, hasTriedSignin]);
-
     if (auth.isLoading) {
         return <div>Signing you in/out...</div>;
     }
