@@ -6,7 +6,6 @@ function Sample(props) {
 
     const auth = useAuth();
     const [hasTriedSignin, setHasTriedSignin] = React.useState(false);
-    const [refresh, setRefresh] = React.useState(false); // State to force refresh
 
     // automatically sign-in
     React.useEffect(() => {
@@ -19,11 +18,11 @@ function Sample(props) {
         }
     }, [auth, hasTriedSignin]);
 
-    // Trigger a refresh 0.5 seconds after failing to log in
+    // Trigger a page reload 0.5 seconds after failing to log in
     React.useEffect(() => {
         if (!auth.isAuthenticated && !auth.isLoading && hasTriedSignin) {
             const timer = setTimeout(() => {
-                setRefresh(prev => !prev); // Toggle refresh state to force update
+                window.location.reload(); // Force a full page reload
             }, 500);
             return () => clearTimeout(timer); // Cleanup on unmount
         }
