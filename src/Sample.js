@@ -6,7 +6,7 @@ function Sample(props) {
 
     const auth = useAuth();
     const [hasTriedSignin, setHasTriedSignin] = React.useState(false);
-    const [refreshKey, setRefreshKey] = React.useState(0); // State to trigger re-render
+    const [refresh, setRefresh] = React.useState(false); // State to force refresh
 
     // automatically sign-in
     React.useEffect(() => {
@@ -23,7 +23,7 @@ function Sample(props) {
     React.useEffect(() => {
         if (!auth.isAuthenticated && !auth.isLoading && hasTriedSignin) {
             const timer = setTimeout(() => {
-                setRefreshKey(prevKey => prevKey + 1);
+                setRefresh(prev => !prev); // Toggle refresh state to force update
             }, 500);
             return () => clearTimeout(timer); // Cleanup on unmount
         }
@@ -39,11 +39,12 @@ function Sample(props) {
 
     if (auth.isAuthenticated) {
         return (
-        <div key={refreshKey}>
+        <div>
             <DisplayData />
         </div>
         );
     }
+
 }
 
 export default Sample;
