@@ -21,10 +21,11 @@ function Sample(props) {
     if (auth.isLoading) {
         return <div>Signing you in/out...</div>;
     }
-/*
+
     if (!auth.isAuthenticated) {
+        document.location.href = document.location.href;
         return <div>Unable to log in</div>;
-    }*/
+    }
 /*
     switch (auth.activeNavigator) {
         case "signinSilent":
