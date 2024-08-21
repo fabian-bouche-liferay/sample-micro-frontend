@@ -6,6 +6,9 @@ import { AuthProvider } from "react-oidc-context";
 class WebComponent extends HTMLElement {
 
     connectedCallback() {
+        if (!this.shadowRoot) {
+            this.attachShadow({ mode: 'open' });
+        }
         this.render();
     }
 
@@ -14,6 +17,12 @@ class WebComponent extends HTMLElement {
     }
 
     render() {
+        // Create a container for React to render into within the Shadow DOM
+        if (!this.shadowRoot.querySelector('.react-root')) {
+            const reactRoot = document.createElement('div');
+            reactRoot.className = 'react-root';
+            this.shadowRoot.appendChild(reactRoot);
+        }
 
         const labelsMap = {};
         const labels = this.querySelector('labels');
@@ -38,13 +47,12 @@ class WebComponent extends HTMLElement {
                     labels={labelsMap}
                 />
             </AuthProvider>,
-            this
+            this.shadowRoot.querySelector('.react-root') // Render inside Shadow DOM
         );
-
     }
 
     disconnectedCallback() {
-        ReactDOM.unmountComponentAtNode(this);
+        ReactDOM.unmountComponentAtNode(this.shadowRoot.querySelector('.react-root'));
     }
 }
 
