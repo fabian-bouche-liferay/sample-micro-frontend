@@ -1,0 +1,46 @@
+[#assign isEdit=layoutMode == "edit"]
+<div class="${isEdit?then('', 'd-none')}">
+	<div class="panel panel-secondary">
+		<button
+			aria-controls="collapsePanelOne"
+			aria-expanded="false"
+			class="btn btn-unstyled panel-header panel-header-link collapse-icon collapse-icon-middle collapsed"
+			data-target="#collapsePanelOne"
+			data-toggle="collapse"
+		>
+			<span class="panel-title">Configuration</span>
+		</button>
+		<div class="panel-collapse collapse" id="collapsePanelOne">
+			<div class="panel-body">
+				<p class="label-is-verified-cell-phone-number" data-lfr-editable-id="isVerifiedCellPhoneNumber" data-lfr-editable-type="text">
+					Is cell phone number verified
+				</p>
+				<p class="label-mobile-phone-no" data-lfr-editable-id="mobilePhoneNo" data-lfr-editable-type="text">
+					Mobile Phone
+				</p>
+				<p class="label-work-phone-no" data-lfr-editable-id="workPhoneNo" data-lfr-editable-type="text">
+					Work Phone
+				</p>
+				<p class="label-home-phone-no" data-lfr-editable-id="homePhoneNo" data-lfr-editable-type="text">
+					Home Phone
+				</p>	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<sample-microfrontend api-url="${configuration.apiUrl}">
+	<oidc-config 
+		authority="${configuration.authority}"
+		client-id="${configuration.clientId}"
+		scope="${configuration.scope}"
+		audience="${configuration.audience}">
+	</oidc-config>
+	<labels 
+		is-verified-cell-phone-number="Is cell phone number verified"
+		mobile-phone-no="Mobile Phone"
+		work-phone-no="Work Phone"
+		home-phone-no="Home Phone">
+	</labels>
+</sample-microfrontend>

@@ -1,0 +1,63 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"name": "authority",
+					"label": "OAuth 2.0 Authority",
+					"description": "OAuth 2.0 Authority",
+					"type": "text",
+					"typeOptions": {
+						"placeholder": "https://dev-fabian-bouche-liferay.eu.auth0.com"
+					},
+					"dataType": "string",
+					"defaultValue": ""
+				},
+				{
+					"name": "clientId",
+					"label": "OAuth 2.0 Client ID",
+					"description": "OAuth 2.0 Client ID",
+					"type": "text",
+					"dataType": "string",
+					"defaultValue": ""
+				},		
+				{
+					"name": "scope",
+					"label": "OAuth 2.0 scopes",
+					"description": "OAuth 2.0 scopes",
+					"type": "text",
+					"dataType": "string",
+					"defaultValue": ""
+				},
+				{
+					"name": "audience",
+					"label": "OAuth 2.0 audience",
+					"description": "OAuth 2.0 audience",
+					"type": "text",
+					"typeOptions": {
+						"placeholder": "https://restapi-lctilink-prd.lfr.cloud"
+					},					
+					"dataType": "string",
+					"defaultValue": ""
+				}				
+			],
+			"label": "OIDC Configuration"
+		},
+		{
+			"fields": [
+				{
+					"name": "apiUrl",
+					"label": "API URL",
+					"description": "API Endpoint URL",
+					"type": "text",
+					"typeOptions": {
+						"placeholder": "https://restapi-lctilink-prd.lfr.cloud/Account/ContactInfo"
+					},
+					"dataType": "string",
+					"defaultValue": ""
+				}
+			],
+			"label": "API Configuration"
+		}
+	]
+}
