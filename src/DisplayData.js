@@ -20,7 +20,7 @@ function DisplayData(props) {
                 console.error(e);
             }
         })()
-    }, [auth]);
+    }, [auth, props.apiUrl]);
 
     if (foo == null) {
         return <div>Loading...</div>;
