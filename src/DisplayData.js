@@ -10,9 +10,7 @@ function DisplayData(props) {
         (async () => {
             try {
                 const token = auth.user?.access_token;
-                const url = "https://restapi-lctilink-prd.lfr.cloud/Account/ContactInfo";
-                //const url = "http://localhost:9090/Account/ContactInfo";
-                const response = await fetch(url, {
+                const response = await fetch(props.apiUrl, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -31,22 +29,24 @@ function DisplayData(props) {
     return (
         <div>
             <table>
-                <tr>
-                    <th>Is Verified Cell Phone</th>
-                    <td>{foo.IsVerifiedCellPhoneNumber}</td>
-                </tr>
-                <tr>
-                    <th>Mobile Phone</th>
-                    <td>{foo.MobilePhoneNo}</td>
-                </tr>
-                <tr>
-                    <th>Work Phone</th>
-                    <td>{foo.WorkPhoneNo}</td>
-                </tr>
-                <tr>
-                    <th>Home Phone</th>
-                    <td>{foo.HomePhoneNo}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th>{props.labels["is-verified-cell-phone-number"]}</th>
+                        <td>{foo.IsVerifiedCellPhoneNumber}</td>
+                    </tr>
+                    <tr>
+                        <th>{props.labels["mobile-phone-no"]}</th>
+                        <td>{foo.MobilePhoneNo}</td>
+                    </tr>
+                    <tr>
+                        <th>{props.labels["work-phone-no"]}</th>
+                        <td>{foo.WorkPhoneNo}</td>
+                    </tr>
+                    <tr>
+                        <th>{props.labels["home-phone-no"]}</th>
+                        <td>{foo.HomePhoneNo}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     );

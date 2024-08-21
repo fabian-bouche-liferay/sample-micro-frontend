@@ -28,8 +28,19 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <sample-microfrontend>
-    </sample-microfrontend>
+    <sample-microfrontend api-url="https://restapi-lctilink-prd.lfr.cloud/Account/ContactInfo">
+      <oidc-config 
+          authority="https://dev-fabian-bouche-liferay.eu.auth0.com"
+          client-id="hYJr5F1BT8z8phgPQj63AXkW5Tq2IykV"
+          scope="samplescope"
+          audience="https://restapi-lctilink-prd.lfr.cloud" />
+      <labels 
+          is-verified-cell-phone-number="Is cell phone number verified"
+          mobile-phone-no="Mobile Phone"
+          work-phone-no="Work Phone"
+          home-phone-no="Home Phone"
+      />
+  </sample-microfrontend>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

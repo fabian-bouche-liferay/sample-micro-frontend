@@ -29,7 +29,10 @@ function Sample(props) {
     if (auth.isAuthenticated) {
         return (
         <div>
-            <DisplayData />
+            <DisplayData
+                apiUrl={props.apiUrl}
+                labels={props.labels}
+            />
         </div>
         );
     }
