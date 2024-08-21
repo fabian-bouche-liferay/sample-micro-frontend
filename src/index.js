@@ -43,6 +43,7 @@ class WebComponent extends HTMLElement {
         ReactDOM.render(
             <AuthProvider {...oidcConfig}>
                 <Sample
+                    key={JSON.stringify(labels)}
                     apiUrl={this.getAttribute("api-url")}
                     labels={labelsMap}
                 />
